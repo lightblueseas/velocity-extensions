@@ -15,6 +15,10 @@
  */
 package de.alpharogroup.velocity;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -29,12 +33,18 @@ import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
+import de.alpharogroup.file.create.CreateFileExtensions;
+
 /**
  * The class {@link VelocityExtensions}.
  */
 public class VelocityExtensions
 {
 
+	/** The Constant for the value of property 'resource.loader'. */
+	public static final String CLASSPATH_VALUE = "classpath";
+	/** The Constant for the key of property 'classpath.resource.loader.class'. */
+	public static final String KEY_CLASSPATH_RESOURCE_LOADER_CLASS = "classpath.resource.loader.class";
 	/** The Constant VELOCITY_TEMPLATE_FILE_EXTENSION. */
 	public static final String VELOCITY_TEMPLATE_FILE_EXTENSION = ".vm";
 
@@ -46,8 +56,8 @@ public class VelocityExtensions
 	public static VelocityEngine getClasspathResourceLoaderVelocityEngine()
 	{
 		final VelocityEngine ve = new VelocityEngine();
-		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, CLASSPATH_VALUE);
+		ve.setProperty(KEY_CLASSPATH_RESOURCE_LOADER_CLASS, ClasspathResourceLoader.class.getName());
 		ve.init();
 		return ve;
 	}
@@ -146,6 +156,39 @@ public class VelocityExtensions
 		final StringWriter writer = new StringWriter();
 		Velocity.evaluate(context, writer, logTag, templateAsString);
 		return writer.toString();
+	}
+
+	/**
+	 * Merges the given template file to the given file in the given velocity context.
+	 *
+	 * @param context the velocity context
+	 * @param templateFileName the file name of the template file
+	 * @param fileName the file name that will be created
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public static void mergeToContext(final VelocityContext context, final String templateFileName, final String fileName) throws IOException
+	{
+		File generatedClassFile;
+		generatedClassFile = new File(fileName);
+		CreateFileExtensions.newFileQuietly(generatedClassFile);
+		final BufferedWriter bufferedWriter = new BufferedWriter(
+			new FileWriter(fileName));
+
+		final Template template = Velocity
+			.getTemplate(templateFileName);
+		template.merge(context, bufferedWriter);
+		bufferedWriter.flush();
+		bufferedWriter.close();
+	}
+
+	/**
+	 * Factory method for create a new {@link VelocityContext}.
+	 *
+	 * @return the new {@link VelocityContext}
+	 */
+	public static VelocityContext newVelocityContext() {
+		final VelocityContext context = new VelocityContext();
+		return context;
 	}
 
 }

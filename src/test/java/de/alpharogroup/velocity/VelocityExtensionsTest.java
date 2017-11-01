@@ -20,9 +20,15 @@ import org.apache.velocity.app.Velocity;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
+/**
+ * The unit test class for the class {@link VelocityExtensions}.
+ */
 public class VelocityExtensionsTest
 {
 
+	/**
+	 * Test method for {@link VelocityExtensions#merge(VelocityContext, String)}.
+	 */
 	@Test
 	public void testMergeVelocityContextString()
 	{
@@ -36,8 +42,8 @@ public class VelocityExtensionsTest
 		context.put("project", "Jakarta");
 
 		/* lets make our own string to render */
-		final String s = "We are using $project $name to render this.";
-		final String actual = VelocityExtensions.merge(context, s);
+		final String templateAsString = "We are using $project $name to render this.";
+		final String actual = VelocityExtensions.merge(context, templateAsString);
 		final String expected = "We are using Jakarta Velocity to render this.";
 		/* check if equal */
 		AssertJUnit.assertEquals(expected, actual);

@@ -15,8 +15,10 @@
  */
 package de.alpharogroup.velocity;
 
+import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.apache.velocity.runtime.parser.ParseException;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -32,6 +34,8 @@ public class VelocityExtensionsTest
 	@Test
 	public void testMergeVelocityContextString()
 	{
+		String expected;
+		String actual;
 		/* first, we init the runtime engine. Defaults are fine. */
 		Velocity.init();
 
@@ -43,10 +47,34 @@ public class VelocityExtensionsTest
 
 		/* lets make our own string to render */
 		final String templateAsString = "We are using $project $name to render this.";
-		final String actual = VelocityExtensions.merge(context, templateAsString);
-		final String expected = "We are using Jakarta Velocity to render this.";
+		actual = VelocityExtensions.merge(context, templateAsString);
+		expected = "We are using Jakarta Velocity to render this.";
 		/* check if equal */
 		AssertJUnit.assertEquals(expected, actual);
 	}
+
+	/**
+	 * Test method for {@link VelocityExtensions#getTemplate(String)}.
+	 * 
+	 * @throws ParseException
+	 */
+	@Test
+	public void testGetTemplate() throws ParseException
+	{
+		String expected;
+		String actual;
+		/* lets make our own string to render */
+		final String templateAsString = "We are using $project $name to render this.";
+
+		Template template = VelocityExtensions.getTemplate(templateAsString);
+		AssertJUnit.assertNotNull(template);
+		
+		expected = "Template name";
+		actual = template.getName();
+		/* check if equal */
+		AssertJUnit.assertEquals(expected, actual);
+
+	}
+
 
 }

@@ -77,14 +77,33 @@ public class VelocityExtensions
 	 */
 	public static Template getTemplate(final String templateAsString) throws ParseException
 	{
+		return getTemplate(templateAsString, "Template name", "UTF-8");
+	}
+
+	/**
+	 * Gets a velocity template from the given String.
+	 *
+	 * @param templateAsString
+	 *            the template as string
+	 * @param templateName
+	 *            the template name
+	 * @param encoding
+	 *            the encoding
+	 * @return the template
+	 * @throws ParseException
+	 *             the parse exception
+	 */
+	public static Template getTemplate(final String templateAsString, final String templateName,
+		final String encoding) throws ParseException
+	{
 		final RuntimeServices runtimeServices = RuntimeSingleton.getRuntimeServices();
 		final StringReader reader = new StringReader(templateAsString);
-		final SimpleNode node = runtimeServices.parse(reader, "Template name");
+		final SimpleNode node = runtimeServices.parse(reader, templateName);
 		final Template template = new Template();
 		template.setRuntimeServices(runtimeServices);
 		template.setData(node);
 		template.initDocument();
-		template.setEncoding("UTF-8");
+		template.setEncoding(encoding);
 		return template;
 	}
 

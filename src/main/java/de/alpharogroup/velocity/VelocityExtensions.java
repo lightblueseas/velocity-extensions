@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.Properties;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -91,7 +92,8 @@ public class VelocityExtensions
 	 * @throws ParseException
 	 *             the parse exception
 	 */
-	public static Template getTemplate(final String templateAsString, final String templateName) throws ParseException
+	public static Template getTemplate(final String templateAsString, final String templateName)
+		throws ParseException
 	{
 		return getTemplate(templateAsString, templateName, "UTF-8");
 	}
@@ -207,6 +209,32 @@ public class VelocityExtensions
 	 *
 	 * @param context
 	 *            the context
+	 * @param velocityProperties
+	 *            the velocity properties
+	 * @param logTag
+	 *            to be used as the template name for log messages
+	 * @param templateAsString
+	 *            the template as string
+	 * @return the string
+	 */
+	public static String merge(final VelocityContext context, final Properties velocityProperties,
+		final String logTag, final String templateAsString)
+	{
+		final StringWriter writer = new StringWriter();
+		if (velocityProperties != null && !velocityProperties.isEmpty())
+		{
+			Velocity.init(velocityProperties);
+		}
+		Velocity.evaluate(context, writer, logTag, templateAsString);
+		return writer.toString();
+	}
+
+	/**
+	 * Merges the given context with the given template that is a String object and returns the
+	 * result.
+	 *
+	 * @param context
+	 *            the context
 	 * @param templateAsString
 	 *            the template as string
 	 * @return the string
@@ -231,9 +259,7 @@ public class VelocityExtensions
 	public static String merge(final VelocityContext context, final String logTag,
 		final String templateAsString)
 	{
-		final StringWriter writer = new StringWriter();
-		Velocity.evaluate(context, writer, logTag, templateAsString);
-		return writer.toString();
+		return merge(context, null, logTag, templateAsString);
 	}
 
 	/**
@@ -248,7 +274,7 @@ public class VelocityExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @deprecated use instead the same name method with velocity template engine
-	 * 
+	 *
 	 */
 	@Deprecated
 	public static void mergeToContext(final VelocityContext context, final String templateFileName,

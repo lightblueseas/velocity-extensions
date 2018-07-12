@@ -34,13 +34,15 @@ import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-import de.alpharogroup.file.create.CreateFileExtensions;
+import de.alpharogroup.file.create.CreateFileQuietlyExtensions;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link VelocityExtensions} provides methods for create velocity template engines and
  * templates.
  */
-public class VelocityExtensions
+@UtilityClass
+public final class VelocityExtensions
 {
 
 	/** The Constant for the value of property 'resource.loader'. */
@@ -265,27 +267,6 @@ public class VelocityExtensions
 	/**
 	 * Merges the given template file to the given file in the given velocity context.
 	 *
-	 * @param context
-	 *            the velocity context
-	 * @param templateFileName
-	 *            the file name of the template file
-	 * @param fileName
-	 *            the file name that will be created
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @deprecated use instead the same name method with velocity template engine
-	 *
-	 */
-	@Deprecated
-	public static void mergeToContext(final VelocityContext context, final String templateFileName,
-		final String fileName) throws IOException
-	{
-		mergeToContext(null, context, templateFileName, fileName);
-	}
-
-	/**
-	 * Merges the given template file to the given file in the given velocity context.
-	 *
 	 * @param ve
 	 *            the velocity template engine
 	 * @param context
@@ -302,7 +283,7 @@ public class VelocityExtensions
 	{
 		File generatedClassFile;
 		generatedClassFile = new File(fileName);
-		CreateFileExtensions.newFileQuietly(generatedClassFile);
+		CreateFileQuietlyExtensions.newFileQuietly(generatedClassFile);
 		final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
 		final Template template = getVelocityTemplate(ve, templateFileName);
 		template.merge(context, bufferedWriter);
@@ -334,7 +315,7 @@ public class VelocityExtensions
 	{
 		File generatedClassFile;
 		generatedClassFile = new File(fileName);
-		CreateFileExtensions.newFileQuietly(generatedClassFile);
+		CreateFileQuietlyExtensions.newFileQuietly(generatedClassFile);
 		final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
 		final Template template = getTemplate(ve, path, templateName, encoding);
 		template.merge(context, bufferedWriter);

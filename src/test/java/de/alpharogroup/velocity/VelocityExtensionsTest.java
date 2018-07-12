@@ -30,6 +30,9 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.file.delete.DeleteFileExtensions;
@@ -160,19 +163,41 @@ public class VelocityExtensionsTest
 	{
 		String expected;
 		String actual;
-		final VelocityEngine ve = new VelocityEngine();
+		VelocityEngine ve;
+		Template template;
+		VelocityContext context;
+		StringWriter writer;
+		// 1. scenario...
+		ve = new VelocityEngine();
 		ve.init();
 
-		final Template template = VelocityExtensions.getTemplate(ve, "src/test/resources/", "test",
-			"UTF-8");
+		template = VelocityExtensions.getTemplate(ve, "src/test/resources/", "test", "UTF-8");
 		assertNotNull(template);
 
-		final VelocityContext context = new VelocityContext();
+		context = new VelocityContext();
 
 		context.put("name", "Velocity");
 		context.put("project", "Jakarta");
 
-		final StringWriter writer = new StringWriter();
+		writer = new StringWriter();
+		template.merge(context, writer);
+
+		actual = writer.toString();
+		expected = "We are using Jakarta Velocity to render this.";
+		/* check if equal */
+		assertEquals(expected, actual);
+		// 2. scenario...
+		ve = null;
+
+		template = VelocityExtensions.getTemplate(ve, "src/test/resources/", "test", "UTF-8");
+		assertNotNull(template);
+
+		context = new VelocityContext();
+
+		context.put("name", "Velocity");
+		context.put("project", "Jakarta");
+
+		writer = new StringWriter();
 		template.merge(context, writer);
 
 		actual = writer.toString();
@@ -228,7 +253,8 @@ public class VelocityExtensionsTest
 		String actual;
 
 		final String fileName = "test.txt";
-		final VelocityEngine engine = VelocityExtensions.getClasspathResourceLoaderVelocityEngine();
+		final VelocityEngine engine = new VelocityEngine();
+		engine.init();
 		final VelocityContext context = VelocityExtensions.newVelocityContext();
 		File generatedClassFile;
 		generatedClassFile = new File(fileName);
@@ -236,7 +262,8 @@ public class VelocityExtensionsTest
 		context.put("name", "Velocity");
 		context.put("project", "Jakarta");
 
-		VelocityExtensions.mergeToContext(engine, context, "test.vm", fileName);
+		VelocityExtensions.mergeToContext(engine, context, "src/test/resources/", "test", fileName,
+			"UTF-8");
 
 		actual = ReadFileExtensions.readFromFile(generatedClassFile);
 		expected = "We are using Jakarta Velocity to render this.";
@@ -335,6 +362,16 @@ public class VelocityExtensionsTest
 	{
 		final VelocityContext context = VelocityExtensions.newVelocityContext();
 		assertNotNull(context);
+	}
+
+	/**
+	 * Test method for {@link VelocityExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(VelocityExtensions.class);
 	}
 
 }

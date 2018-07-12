@@ -1,21 +1,21 @@
 # Overview
 
+<div align="center">
+
+[![Build Status](https://travis-ci.org/lightblueseas/velocity-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/velocity-extensions) 
+[![Coverage Status](https://coveralls.io/repos/github/lightblueseas/velocity-extensions/badge.svg?branch=develop)](https://coveralls.io/github/lightblueseas/velocity-extensions?branch=master)
+[![Open Issues](https://img.shields.io/github/issues/lightblueseas/velocity-extensions.svg?style=flat)](https://github.com/lightblueseas/velocity-extensions/issues)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions)
+[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/velocity-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/velocity-extensions)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
+
+</div>
+
 The velocity-extensions project holds several extensions for the velocity library.
 
 ## License
 
 The source code comes under the liberal MIT License, making velocity-extensions great for all types of applications.
-
-## Build status
-[![Build Status](https://travis-ci.org/lightblueseas/velocity-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/velocity-extensions)
-
-## Maven Central
-
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions)
-
-## javadoc
-
-velocity-extensions [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/velocity-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/velocity-extensions)
 
 ## Maven dependency
 

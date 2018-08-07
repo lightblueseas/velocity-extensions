@@ -26,9 +26,13 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
+	<properties>
+			...
 		<!-- VELOCITY-EXTENSIONS version -->
 		<velocity-extensions.version>1.3</velocity-extensions.version>
-
+			...
+	</properties>
+			...
 		<dependencies>
 			...
 			<!-- VELOCITY-EXTENSIONS DEPENDENCY -->

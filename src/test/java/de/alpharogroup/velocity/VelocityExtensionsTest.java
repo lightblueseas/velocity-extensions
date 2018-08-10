@@ -249,14 +249,18 @@ public class VelocityExtensionsTest
 	public void testMergeToContextVelocityEngineVelocityContextStringStringStringString()
 		throws IOException
 	{
-		String expected;
 		String actual;
+		String expected;
 
-		final String fileName = "test.txt";
-		final VelocityEngine engine = new VelocityEngine();
-		engine.init();
-		final VelocityContext context = VelocityExtensions.newVelocityContext();
+		VelocityEngine engine;
+		String fileName;
+		VelocityContext context;
 		File generatedClassFile;
+
+		fileName = "test.txt";
+		engine = new VelocityEngine();
+		engine.init();
+		context = VelocityExtensions.newVelocityContext();
 		generatedClassFile = new File(fileName);
 
 		context.put("name", "Velocity");

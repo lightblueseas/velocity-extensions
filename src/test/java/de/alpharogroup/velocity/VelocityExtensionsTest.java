@@ -284,7 +284,8 @@ public class VelocityExtensionsTest
 		generatedClassFile = new File(fileName);
 
 		context.put("db_name", "mydb");
-		context.put("db_user", "readonlyuser");
+		context.put("db_user", "readonlyuser");		
+		context.put("pw", "readonlypw");
 
 		VelocityExtensions.mergeToContext(engine, context, "src/test/resources/", "create-readonly-user-pg", fileName,
 			"UTF-8");
@@ -293,6 +294,8 @@ public class VelocityExtensionsTest
 		expected = "-- Create a read-only user in PostgreSQL\r\n" +
 			"-- where mydb is the database and readonlyuser is the name\r\n" +
 			"-- of the user that have only read access to the database mydb\r\n" +
+			"-- and readonlypw is the password of this database user\r\n" +
+			"CREATE USER readonlyuser WITH ENCRYPTED PASSWORD 'readonlypw';\r\n" +
 			"GRANT CONNECT ON DATABASE mydb TO readonlyuser;\r\n" +
 			"GRANT USAGE ON SCHEMA public TO readonlyuser;\r\n" +
 			"GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonlyuser;";

@@ -275,6 +275,29 @@ public class VelocityExtensionsTest
 		assertEquals(expected, actual);
 		// clean up...
 		DeleteFileExtensions.delete(generatedClassFile);
+		
+		// new scenario
+		fileName = "create-readonly-user-pg.sql";
+		engine = new VelocityEngine();
+		engine.init();
+		context = VelocityExtensions.newVelocityContext();
+		generatedClassFile = new File(fileName);
+
+		context.put("db_name", "mydb");
+		context.put("db_user", "readonlyuser");
+
+		VelocityExtensions.mergeToContext(engine, context, "src/test/resources/", "create-readonly-user-pg", fileName,
+			"UTF-8");
+
+		actual = ReadFileExtensions.readFromFile(generatedClassFile);
+		expected = "-- Create a read-only user in PostgreSQL\r\n" +
+			"-- where mydb is the database and readonlyuser is the name\r\n" +
+			"-- of the user that have only read access to the database mydb\r\n" +
+			"GRANT CONNECT ON DATABASE mydb TO readonlyuser;\r\n" +
+			"GRANT USAGE ON SCHEMA public TO readonlyuser;\r\n" +
+			"GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonlyuser;";
+		/* check if equal */
+		assertEquals(expected, actual);
 	}
 
 	/**

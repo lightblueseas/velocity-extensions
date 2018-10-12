@@ -1,5 +1,5 @@
 -- Create a read-only user in PostgreSQL
-- where $db_name is the database and $db_user is the name
+-- where $db_name is the database and $db_user is the name
 -- of the user that have only read access to the database $db_name
 GRANT CONNECT ON DATABASE $db_name TO $db_user;
 GRANT USAGE ON SCHEMA public TO $db_user;

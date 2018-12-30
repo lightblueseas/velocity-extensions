@@ -1,9 +1,14 @@
 ## Change log
 ----------------------
 
-Version 1.4-SNAPSHOT
+Version 1.3.1
 -------------
 
+CHANGED:
+
+- update of parent version to 4.5
+- update of file-worker version to 5.0.1
+- excluded logging dependencies
 
 Version 1.3
 -------------

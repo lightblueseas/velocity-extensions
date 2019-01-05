@@ -17,7 +17,7 @@
 		<!-- VELOCITY version -->
 		<velocity.version>1.7</velocity.version>
 		<!-- FILE-WORKER version -->
-		<file-worker.version>5.0.1</file-worker.version>
+		<file-worker.version>5.0.2</file-worker.version>
 	</properties>
 
 	<dependencyManagement>

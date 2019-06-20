@@ -14,6 +14,8 @@
 
 The velocity-extensions project holds several extensions for the velocity library.
 
+If you like this project put a ⭐ and donate
+
 ## License
 
 The source code comes under the liberal MIT License, making velocity-extensions great for all types of applications.

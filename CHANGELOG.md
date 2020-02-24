@@ -1,8 +1,17 @@
 ## Change log
 ----------------------
 
-Version 1.4-SNAPSHOT
+Version 1.4
 -------------
+
+ADDED:
+ 
+- new build system gradle
+
+CHANGED:
+
+- removed maven build system and all related files
+- removed all lombok dependent imports
 
 Version 1.3.1
 -------------

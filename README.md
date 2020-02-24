@@ -32,7 +32,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- VELOCITY-EXTENSIONS version -->
-		<velocity-extensions.version>1.3.1</velocity-extensions.version>
+		<velocity-extensions.version>1.4</velocity-extensions.version>
 			...
 	</properties>
 			...
@@ -46,7 +46,25 @@ Than you can add the dependency to your dependencies:
 			</dependency>
 			...
 		</dependencies>
+	
+			
+## gradle dependency
 
+You can first define the version in the ext section and add than the following gradle dependency to your project `build.gradle` if you want to import the core functionality of velocity-extensions:
+
+```
+ext {
+			...
+    velocityExtensionsVersion = "1.4"
+			...
+}
+dependencies {
+			...
+compile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
+			...
+}
+```
+	
 ## Semantic Versioning
 
 The versions of velocity-extensions are maintained with the Semantic Versioning guidelines.

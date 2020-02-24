@@ -60,15 +60,15 @@ publishing {
             artifact javadocJar
             pom {
                 name = "$rootProject.name"
-                description = "Useful extensions and utilities for handle xml or transform dtd to xsd and xslt"
-                url = "https://github.com/lightblueseas/"+"$rootProject.name"
+                description = "The velocity-extensions project holds several extensions for the velocity library"
+                url = "https://github.com/astrapi69/"+"$rootProject.name"
                 organization {
                     name = "Alpha Ro Group UG (haftungsbeschrängt)"
                     url = "http://www.alpharogroup.de/"
                 }
                 issueManagement {
                     system = "GitHub"
-                    url = "https://github.com/lightblueseas/"+"$rootProject.name"+"/issues"
+                    url = "https://github.com/astrapi69/"+"$rootProject.name"+"/issues"
                 }
                 licenses {
                     license {
@@ -84,9 +84,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "scm:git:git:@github.com:lightblueseas/"+"$rootProject.name"+".git"
-                    developerConnection = "scm:git:git@github.com:lightblueseas/"+"$rootProject.name"+".git"
-                    url = "git:@github.com:lightblueseas/"+"$rootProject.name"+".git"
+                    connection = "scm:git:git:@github.com:astrapi69/"+"$rootProject.name"+".git"
+                    developerConnection = "scm:git:git@github.com:astrapi69/"+"$rootProject.name"+".git"
+                    url = "git:@github.com:astrapi69/"+"$rootProject.name"+".git"
                 }
             }
         }

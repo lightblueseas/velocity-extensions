@@ -1,6 +1,27 @@
 ## Change log
 ----------------------
 
+Version 1.4
+-------------
+
+ADDED:
+ 
+- new build system gradle
+
+CHANGED:
+
+- removed maven build system and all related files
+- removed all lombok dependent imports
+
+Version 1.3.1
+-------------
+
+CHANGED:
+
+- update of parent version to 4.5
+- update of file-worker version to 5.0.2
+- excluded logging dependencies
+
 Version 1.3
 -------------
 

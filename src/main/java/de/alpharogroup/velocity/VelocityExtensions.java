@@ -34,14 +34,12 @@ import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-import de.alpharogroup.file.create.CreateFileQuietlyExtensions;
-import lombok.experimental.UtilityClass;
+import de.alpharogroup.file.create.FileFactory;
 
 /**
  * The class {@link VelocityExtensions} provides methods for create velocity template engines and
  * templates.
  */
-@UtilityClass
 public final class VelocityExtensions
 {
 
@@ -283,7 +281,7 @@ public final class VelocityExtensions
 	{
 		File generatedClassFile;
 		generatedClassFile = new File(fileName);
-		CreateFileQuietlyExtensions.newFileQuietly(generatedClassFile);
+		FileFactory.newFile(generatedClassFile);
 		final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
 		final Template template = getVelocityTemplate(ve, templateFileName);
 		template.merge(context, bufferedWriter);
@@ -315,7 +313,7 @@ public final class VelocityExtensions
 	{
 		File generatedClassFile;
 		generatedClassFile = new File(fileName);
-		CreateFileQuietlyExtensions.newFileQuietly(generatedClassFile);
+		FileFactory.newFile(generatedClassFile);
 		final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
 		final Template template = getTemplate(ve, path, templateName, encoding);
 		template.merge(context, bufferedWriter);
@@ -332,6 +330,10 @@ public final class VelocityExtensions
 	{
 		final VelocityContext context = new VelocityContext();
 		return context;
+	}
+
+	private VelocityExtensions()
+	{
 	}
 
 }

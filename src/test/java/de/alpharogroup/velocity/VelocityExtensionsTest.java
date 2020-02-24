@@ -30,8 +30,6 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
@@ -249,15 +247,19 @@ public class VelocityExtensionsTest
 	public void testMergeToContextVelocityEngineVelocityContextStringStringStringString()
 		throws IOException
 	{
-		String expected;
 		String actual;
+		String expected;
 
-		final String fileName = "test.txt";
-		final VelocityEngine engine = new VelocityEngine();
+		VelocityEngine engine;
+		String fileName;
+		VelocityContext context;
+		File generatedOutputFile;
+
+		fileName = "test.txt";
+		engine = new VelocityEngine();
 		engine.init();
-		final VelocityContext context = VelocityExtensions.newVelocityContext();
-		File generatedClassFile;
-		generatedClassFile = new File(fileName);
+		context = VelocityExtensions.newVelocityContext();
+		generatedOutputFile = new File(fileName);
 
 		context.put("name", "Velocity");
 		context.put("project", "Jakarta");
@@ -265,12 +267,40 @@ public class VelocityExtensionsTest
 		VelocityExtensions.mergeToContext(engine, context, "src/test/resources/", "test", fileName,
 			"UTF-8");
 
-		actual = ReadFileExtensions.readFromFile(generatedClassFile);
+		actual = ReadFileExtensions.readFromFile(generatedOutputFile);
 		expected = "We are using Jakarta Velocity to render this.";
 		/* check if equal */
 		assertEquals(expected, actual);
 		// clean up...
-		DeleteFileExtensions.delete(generatedClassFile);
+		DeleteFileExtensions.delete(generatedOutputFile);
+
+		// new scenario
+		fileName = "create-readonly-user-pg.sql";
+		engine = new VelocityEngine();
+		engine.init();
+		context = VelocityExtensions.newVelocityContext();
+		generatedOutputFile = new File(fileName);
+
+		context.put("db_name", "mydb");
+		context.put("db_user", "readonlyuser");
+		context.put("pw", "readonlypw");
+
+		VelocityExtensions.mergeToContext(engine, context, "src/test/resources/",
+			"create-readonly-user-pg", fileName, "UTF-8");
+
+		actual = ReadFileExtensions.readFromFile(generatedOutputFile);
+		expected = "-- Create a read-only user in PostgreSQL\r\n"
+			+ "-- where mydb is the database and readonlyuser is the name\r\n"
+			+ "-- of the user that have only read access to the database mydb\r\n"
+			+ "-- and readonlypw is the password of this database user\r\n"
+			+ "CREATE USER readonlyuser WITH ENCRYPTED PASSWORD 'readonlypw';\r\n"
+			+ "GRANT CONNECT ON DATABASE mydb TO readonlyuser;\r\n"
+			+ "GRANT USAGE ON SCHEMA public TO readonlyuser;\r\n"
+			+ "GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonlyuser;\r\n";
+		/* check if equal */
+		assertEquals(expected, actual);
+		// clean up...
+		DeleteFileExtensions.delete(generatedOutputFile);
 	}
 
 	/**
@@ -367,7 +397,7 @@ public class VelocityExtensionsTest
 	/**
 	 * Test method for {@link VelocityExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

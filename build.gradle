@@ -60,7 +60,7 @@ publishing {
             artifact javadocJar
             pom {
                 name = "$rootProject.name"
-                description = "Useful extensions and utilities for handle xml or transform dtd to xsd and xslt"
+                description = "The velocity-extensions project holds several extensions for the velocity library"
                 url = "https://github.com/lightblueseas/"+"$rootProject.name"
                 organization {
                     name = "Alpha Ro Group UG (haftungsbeschrängt)"

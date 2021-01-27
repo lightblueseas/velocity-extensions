@@ -50,7 +50,15 @@ Than you can add the dependency to your dependencies:
 			
 ## gradle dependency
 
-You can first define the version in the ext section and add than the following gradle dependency to your project `build.gradle` if you want to import the core functionality of velocity-extensions:
+You can first define the version in the ext section and add than the following gradle dependency to 
+your project `build.gradle` if you want to import the core functionality of velocity-extensions:
+
+define version in file gradle.properties
+```
+velocityExtensionsVersion=1.4
+```
+
+or in build.gradle ext area
 
 ```
 ext {
@@ -58,9 +66,14 @@ ext {
     velocityExtensionsVersion = "1.4"
 			...
 }
+```
+
+and than add the dependency to the dependencies area
+
+```
 dependencies {
 			...
-compile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
+    implementation("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
 			...
 }
 ```

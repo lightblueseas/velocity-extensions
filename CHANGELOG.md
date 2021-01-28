@@ -1,11 +1,13 @@
 ## Change log
 ----------------------
 
-Version 1.5-SNAPSHOT
+Version 2-SNAPSHOT
 -------------
 
 CHANGED:
 
+- update jdk from version 8 to 11
+  
 - update of gradle to new version 6.8.1
 - changed to new package io.github.astrapi69
 

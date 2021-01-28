@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Build Status](https://travis-ci.org/lightblueseas/velocity-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/velocity-extensions) 
+[![Build Status](https://travis-ci.com/lightblueseas/velocity-extensions.svg?branch=master)](https://travis-ci.com/lightblueseas/velocity-extensions) 
 [![Coverage Status](https://coveralls.io/repos/github/lightblueseas/velocity-extensions/badge.svg?branch=develop)](https://coveralls.io/github/lightblueseas/velocity-extensions?branch=master)
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/velocity-extensions.svg?style=flat)](https://github.com/lightblueseas/velocity-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions)

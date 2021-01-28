@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.alpharogroup.velocity;
+package io.github.astrapi69.velocity;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -23,6 +23,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Properties;
 
+import io.github.astrapi69.create.FileFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -34,7 +35,6 @@ import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-import de.alpharogroup.file.create.FileFactory;
 
 /**
  * The class {@link VelocityExtensions} provides methods for create velocity template engines and

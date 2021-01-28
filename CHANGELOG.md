@@ -7,6 +7,7 @@ Version 1.5-SNAPSHOT
 CHANGED:
 
 - update of gradle to new version 6.8.1
+- changed to new package io.github.astrapi69
 
 Version 1.4
 -------------

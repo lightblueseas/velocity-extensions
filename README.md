@@ -32,7 +32,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- VELOCITY-EXTENSIONS version -->
-		<velocity-extensions.version>1.4</velocity-extensions.version>
+		<velocity-extensions.version>1.5</velocity-extensions.version>
 			...
 	</properties>
 			...
@@ -55,7 +55,7 @@ your project `build.gradle` if you want to import the core functionality of velo
 
 define version in file gradle.properties
 ```
-velocityExtensionsVersion=1.4
+velocityExtensionsVersion=1.5
 ```
 
 or in build.gradle ext area
@@ -63,12 +63,12 @@ or in build.gradle ext area
 ```
 ext {
 			...
-    velocityExtensionsVersion = "1.4"
+    velocityExtensionsVersion = "1.5"
 			...
 }
 ```
 
-and than add the dependency to the dependencies area
+then add the dependency to the dependencies area
 
 ```
 dependencies {

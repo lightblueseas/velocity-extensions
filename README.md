@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Build Status](https://travis-ci.org/lightblueseas/velocity-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/velocity-extensions) 
+[![Build Status](https://travis-ci.com/lightblueseas/velocity-extensions.svg?branch=master)](https://travis-ci.com/lightblueseas/velocity-extensions) 
 [![Coverage Status](https://coveralls.io/repos/github/lightblueseas/velocity-extensions/badge.svg?branch=develop)](https://coveralls.io/github/lightblueseas/velocity-extensions?branch=master)
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/velocity-extensions.svg?style=flat)](https://github.com/lightblueseas/velocity-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/velocity-extensions)
@@ -32,7 +32,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- VELOCITY-EXTENSIONS version -->
-		<velocity-extensions.version>1.4</velocity-extensions.version>
+		<velocity-extensions.version>1.5</velocity-extensions.version>
 			...
 	</properties>
 			...
@@ -50,17 +50,30 @@ Than you can add the dependency to your dependencies:
 			
 ## gradle dependency
 
-You can first define the version in the ext section and add than the following gradle dependency to your project `build.gradle` if you want to import the core functionality of velocity-extensions:
+You can first define the version in the ext section and add than the following gradle dependency to 
+your project `build.gradle` if you want to import the core functionality of velocity-extensions:
+
+define version in file gradle.properties
+```
+velocityExtensionsVersion=1.5
+```
+
+or in build.gradle ext area
 
 ```
 ext {
 			...
-    velocityExtensionsVersion = "1.4"
+    velocityExtensionsVersion = "1.5"
 			...
 }
+```
+
+then add the dependency to the dependencies area
+
+```
 dependencies {
 			...
-compile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
+    implementation("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
 			...
 }
 ```

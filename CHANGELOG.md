@@ -1,6 +1,18 @@
 ## Change log
 ----------------------
 
+Version 1.5
+-------------
+
+CHANGED:
+  
+- update of gradle to new version 7.1
+- changed to new package io.github.astrapi69
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.39.0
+- update of dependency file-worker version to 5.9
+- update of test dependency testng to new version 7.4.0
+
 Version 1.4
 -------------
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.alpharogroup.velocity;
+package io.github.astrapi69.velocity;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
@@ -33,8 +33,8 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.file.delete.DeleteFileExtensions;
-import de.alpharogroup.file.read.ReadFileExtensions;
+import io.github.astrapi69.delete.DeleteFileExtensions;
+import io.github.astrapi69.read.ReadFileExtensions;
 
 /**
  * The unit test class for the class {@link VelocityExtensions}.

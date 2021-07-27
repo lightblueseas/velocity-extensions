@@ -1,15 +1,17 @@
 ## Change log
 ----------------------
 
-Version 2-SNAPSHOT
+Version 1.5-SNAPSHOT
 -------------
 
 CHANGED:
-
-- update jdk from version 8 to 11
   
-- update of gradle to new version 6.8.1
+- update of gradle to new version 7.1
 - changed to new package io.github.astrapi69
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.39.0
+- update of dependency file-worker version to 5.9
+- update of test dependency testng to new version 7.4.0
 
 Version 1.4
 -------------
